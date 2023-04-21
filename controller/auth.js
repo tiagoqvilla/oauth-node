@@ -1,5 +1,8 @@
 const axios = require('axios').default
 
+const baseURI = process.env.KEYCLOAK_BASE_URI
+const realm = process.env.REALM
+
 exports.login = async (req, res, next) => {
   const parameters = {
     client_id: req.fields.client_id,
@@ -11,7 +14,7 @@ exports.login = async (req, res, next) => {
 
   try {
     const response = await axios.post(
-      'http://localhost:8090/auth/realms/constr-sw-2023-1/protocol/openid-connect/token',
+      `${baseURI}/auth/realms/${realm}/protocol/openid-connect/token`,
       parameters,
       {
         headers: {

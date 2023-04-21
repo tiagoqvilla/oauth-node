@@ -1,4 +1,5 @@
 const express = require('express')
+const formidable = require('express-formidable')
 const dotenv = require('dotenv')
 
 // Carrega variáveis de ambiente
@@ -8,7 +9,9 @@ const app = express()
 
 // body parser
 app.use(express.json())
-app.use(express.urlencoded())
+
+// suporte para form data
+app.use(formidable())
 
 // arquivos de rotas
 const auth = require('./routes/auth')
